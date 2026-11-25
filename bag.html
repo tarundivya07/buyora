@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Review your Buyora shopping bag.">
+    <title>Your Bag | Buyora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header"></header>
+    <main>
+        <section class="bag-hero">
+            <div class="bag-hero-inner">
+                <nav class="bag-breadcrumb" aria-label="Breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span aria-hidden="true">/</span>
+                    <span aria-current="page">Your bag</span>
+                </nav>
+                <p class="eyebrow">BUYORA CHECKOUT</p>
+                <h1>Your bag</h1>
+                <p class="bag-hero-copy">A few thoughtful finds, all in one place.</p>
+            </div>
+        </section>
+
+        <div class="bag-layout">
+            <section class="bag-items-panel" aria-labelledby="bag-items-title">
+                <div class="bag-panel-heading">
+                    <h2 id="bag-items-title">Shopping bag</h2>
+                    <span id="bag-item-count">0 items</span>
+                </div>
+
+                <div class="bag-items-list"></div>
+
+                <div class="bag-empty-state">
+                    <div class="bag-empty-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M5 8h14l1.5 13h-17L5 8Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                            <path d="M8 9V6a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <p class="eyebrow">READY WHEN YOU ARE</p>
+                    <h3>Your bag is waiting for something lovely.</h3>
+                    <p class="bag-empty-copy">Explore the collection and find something made for you.</p>
+                    <a class="bag-shop-link" href="index.html#products">
+                        Explore products <span aria-hidden="true">→</span>
+                    </a>
+                </div>
+            </section>
+
+            <aside class="bag-summary" aria-labelledby="bag-summary-title">
+                <h2 id="bag-summary-title">Order summary</h2>
+                <div class="bag-summary-line">
+                    <span>Subtotal</span>
+                    <strong id="bag-subtotal">$0.00</strong>
+                </div>
+                <div class="bag-summary-line">
+                    <span>Discount</span>
+                    <strong id="bag-discount" class="bag-summary-benefit">-$0.00</strong>
+                </div>
+                <div class="bag-summary-line">
+                    <span>Delivery</span>
+                    <strong class="bag-summary-benefit">Free</strong>
+                </div>
+                <div class="bag-summary-total">
+                    <span>Total</span>
+                    <strong id="bag-total">$0.00</strong>
+                </div>
+                <div class="bag-trust-strip" aria-label="Shopping benefits">
+                    <span>Secure checkout</span>
+                    <span>Easy returns</span>
+                </div>
+                <button class="bag-checkout-button" type="button" disabled>
+                    Proceed to Checkout <span aria-hidden="true">→</span>
+                </button>
+                <p class="bag-summary-note">Your order total will be confirmed before payment.</p>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <a class="brand footer-brand" href="index.html">BUYORA<span>.</span></a>
+        <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="index.html#products">Shop</a>
+            <a href="index.html#categories">Categories</a>
+            <a href="index.html">Home</a>
+        </nav>
+        <p>© 2026 Buyora. Smart shopping starts here.</p>
+    </footer>
+
+    <script src="js/navbar.js"></script>
+    <script src="js/bag.js"></script>
+</body>
+</html>

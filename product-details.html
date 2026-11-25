@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | Buyora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header"></header>
+
+    <main>
+        <div class="product-details-page">
+            <nav class="breadcrumb details-breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <a href="index.html#products" id="breadcrumb-category">Products</a>
+                <span>/</span>
+                <span id="breadcrumb-title">Product</span>
+            </nav>
+
+            <section class="product-details" aria-labelledby="product-name">
+                <div class="product-gallery">
+                    <div class="gallery-thumbnails" aria-label="Product images">
+                     
+                    </div>
+                    <div class="gallery-main">
+                        <span class="gallery-badge">NEW</span>
+                        <button class="wishlist-button" type="button" aria-label="Add to wishlist">♡</button>
+                        <img id="main-product-image" src="" alt="">
+                    </div>
+                </div>
+
+                <div class="product-summary">
+                    <p class="eyebrow"></p>
+                    <h1 id="product-name"></h1>
+                    <p class="product-brand">by <strong id="product-brand"></strong></p>
+
+                    <div class="rating-row">
+                        <span class="stars" id="product-stars" aria-label="Product rating"></span>
+                        <strong class="rating-num"></strong>
+                        <a href="#reviews"><span class="num-of-review"></span> reviews</a>
+                    </div>
+
+                    <div class="detail-price-row">
+                        <div class="price-wrap">
+                            <p class="discount-price"></p>
+                            <p class="detail-price"></p>
+                            <span class="discount-badge"></span>
+                        </div>
+                    </div>
+
+                    <p class="product-description"></p>
+                    <p class="availability"></p>
+
+                    <div class="purchase-row">
+                    </div>
+
+                    <div class="delivery-note">
+                        <span class="delivery-icon">◆</span>
+                        <p><strong id="shipping-information"></strong><br><span id="delivery-return"></span></p>
+                    </div>
+
+                    <div class="product-accordions">
+                        <details open>
+                            <summary>Product details <span>−</span></summary>
+                            <ul class="product-spec-list"></ul>
+                        </details>
+               
+                        <details>
+                            <summary>Warranty <span>+</span></summary>
+                            <p id="warranty-information"></p>
+                        </details>
+                    </div>
+                </div>
+            </section>
+
+            <section class="reviews-section" id="reviews" aria-labelledby="reviews-title">
+                <div class="reviews-summary">
+                    <p class="eyebrow">CUSTOMER REVIEWS</p>
+                    <h2 id="reviews-title">What people are saying</h2>
+                    <div class="reviews-score">
+                        <strong class="reviews-average rating-num"></strong>
+                        <div>
+                            <span class="stars reviews-stars" aria-label="Review rating"></span>
+                            <p class="reviews-based-on">Based on <span class="num-of-review"></span> reviews</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-list">
+                 
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <a class="brand footer-brand" href="index.html">BUYORA<span>.</span></a>
+        <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="index.html#products">Shop</a>
+            <a href="index.html#categories">Categories</a>
+            <a href="bag.html">My Bag</a>
+        </nav>
+        <p>© 2026 Buyora. Smart shopping starts here.</p>
+    </footer>
+
+    <script src="js/navbar.js"></script>
+    <script src="js/product-details.js"></script>
+</body>
+</html>

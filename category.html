@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category | Buyora</title>
+    <meta name="description" content="Browse products by category at Buyora.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header"></header>
+
+    <main>
+        <section class="category-hero">
+            <div class="category-hero-inner">
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span>/</span>
+                    <span>Category</span>
+                </nav>
+                <p class="eyebrow">BUYORA COLLECTION</p>
+                <h1 id="category-title">Products</h1>
+                <p id="category-count" class="category-subtitle">Find exactly what you're looking for</p>
+            </div>
+        </section>
+
+        <section class="category-products">
+            <div class="category-toolbar">
+                <p id="product-count">0 products</p>
+                <label>
+                    Sort by
+                    <select id="sort-products">
+                        <option value="featured">Featured</option>
+                        <option value="low">Price: Low to High</option>
+                        <option value="high">Price: High to Low</option>
+                        <option value="name">Name: A to Z</option>
+                    </select>
+                </label>
+            </div>
+            <div class="product-grid" id="category-product-grid"></div>
+        </section>
+    </main>
+
+    <footer>
+        <a class="brand footer-brand" href="index.html">BUYORA<span>.</span></a>
+        <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="index.html#products">Shop</a>
+            <a href="index.html#categories">Categories</a>
+            <a href="bag.html">My Bag</a>
+        </nav>
+        <p>© 2026 Buyora. Smart shopping starts here.</p>
+    </footer>
+    <script src="js/navbar.js"></script>
+    <script src="js/category.js"></script>
+</body>
+</html>
