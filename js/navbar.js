@@ -1,5 +1,10 @@
 const header = document.querySelector(".header");
 
+async function loadSearchResultsTitle(searchInputText) {
+    window.location.href = `search-results.html?searchq=${searchInputText}`;
+}
+
+
 async function loadNavbar() {
     const response = await fetch("navbar.html");
 
@@ -35,9 +40,15 @@ async function loadNavbar() {
     });
 
     searchButton.addEventListener("click", () => {
+      if (searchPanel.classList.contains("open")) {
+    console.log("searchingggg");
+    loadSearchResultsTitle(searchInput.value);
+    
+}
         searchPanel.classList.add("open");
         searchPanel.setAttribute("aria-hidden", "false");
         searchInput.focus();
+     
     });
 
     searchClose.addEventListener("click", () => {
@@ -50,6 +61,8 @@ setInterval(() => {
     let cartCount = document.querySelector(".cart-count");
     cartCount.textContent = `${getBagItem.length}`;
 }, 500);
+
+
 }
 
 loadNavbar();

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results | Buyora</title>
+    <meta name="description" content="Search products at Buyora.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header" id="header"></header>
+
+    <main>
+        <section class="category-hero">
+            <div class="category-hero-inner">
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span>/</span>
+                    <span>Search results</span>
+                </nav>
+                <p class="eyebrow">BUYORA SEARCH</p>
+                <h1 id="search-title">Search results</h1>
+                <p id="search-summary" class="category-subtitle">Products matching your search.</p>
+            </div>
+        </section>
+
+        <section class="category-products" aria-labelledby="results-heading">
+            <div class="category-toolbar">
+                <h2 id="results-heading">Products</h2>
+                <p id="search-results-count" aria-live="polite"></p>
+            </div>
+            <div class="product-grid search-results-con"></div>
+        </section>
+    </main>
+
+    <script src="js/navbar.js"></script>
+    <script src="js/search-results-page.js"></script>
+</body>
+</html>

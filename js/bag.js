@@ -65,7 +65,7 @@ let Products = async () => {
             }
 
             bagItemsHTML += `
-                <article class="bag-item">
+                <article class="bag-item" data-product-id="${productId}">
                     <div class="bag-item-image">
                         <img src="${productThumbnail}" alt="${productTitle}" loading="lazy">
                     </div>
@@ -84,13 +84,16 @@ let Products = async () => {
                                 <button type="button" class="inc-btn" aria-label="Increase quantity">+</button>
                             </div>
                         </div>
+                        <p class="bag-quantity-message" aria-live="polite"></p>
                     </div>
                 </article>
             `;
             bagSubTotalCents += Math.round(productPrice * 100) * productQuantity;
             bagTotalCents += Math.round(discountProductPrice * 100) * productQuantity;
         });
-        
+
+     
+
         bagItemsContainer.innerHTML = bagItemsHTML;
         let bagSubTotal = bagSubTotalCents / 100;
         let bagTotal = bagTotalCents / 100;
@@ -100,85 +103,91 @@ let Products = async () => {
         bagTotalCon.textContent = formatPrice(bagTotal);
 
 
-            async function quantityBehav(productId, incOrDec) {
-                let res = await fetch(`https://dummyjson.com/products/${productId}`);
-                let product = await res.json();
+        async function quantityBehav(productId, incOrDec) {
+            let res = await fetch(`https://dummyjson.com/products/${productId}`);
+            let product = await res.json();
 
-                if (incOrDec == "increment") {
-                    let minOrderQ = product.minimumOrderQuantity;
-                    let targetedProduct = getBagItem.find((item) => {
-                        return item.productId == productId;
+            if (incOrDec == "increment") {
+                let minOrderQ = product.minimumOrderQuantity;
+                let targetedProduct = getBagItem.find((item) => {
+                    return item.productId == productId;
+                });
+                let index = bagProductsID.findIndex((elem, index) => {
+                    return elem.productId == productId;
+                });
+                if (targetedProduct.productQuantity < minOrderQ) {
+                    let productQ = targetedProduct.productQuantity + 1;
+                    bagProductsID.splice(index, 1, {
+                        productId: productId,
+                        productQuantity: productQ,
                     });
-                    let index = bagProductsID.findIndex((elem, index) => {
-                         return elem.productId == productId; 
-                    });
-                    if (targetedProduct.productQuantity < minOrderQ) {
-                        let productQ = targetedProduct.productQuantity + 1;
-                        bagProductsID.splice(index, 1, {
-                            productId: productId,
-                            productQuantity: productQ,
-                        });
-                        localStorage.setItem("bagProducts", JSON.stringify(bagProductsID));
-Products();
-                    }
-                    else {
-                        bagProductsID.splice(index, 1, {
-                            productId: productId,
-                            productQuantity: minOrderQ,
-                        });
-                        localStorage.setItem("bagProducts", JSON.stringify(bagProductsID));
-                        console.log("reached max limit");
-                        Products();
-                    }
+                    localStorage.setItem("bagProducts", JSON.stringify(bagProductsID));
+                    Products();
                 }
-                if (incOrDec == "decrement") {
-                    let minOrderQ = product.minimumOrderQuantity;
-                    let targetedProduct = getBagItem.find((item) => {
-                        return item.productId == productId;
-                    });
-                    let index = bagProductsID.findIndex((elem, index) => {
-                         return elem.productId == productId; 
-                    });
-                    if (targetedProduct.productQuantity <= minOrderQ && targetedProduct.productQuantity > 1) {
-                        let productQ = targetedProduct.productQuantity - 1;
-                        bagProductsID.splice(index, 1, {
-                            productId: productId,
-                            productQuantity: productQ,
-                        });
-                        localStorage.setItem("bagProducts", JSON.stringify(bagProductsID));
-                        Products();
-
-                    }
-                    else {
-                        bagProductsID.splice(index, 1);
-                        localStorage.setItem("bagProducts", JSON.stringify(bagProductsID));
-                        console.log("reached max limit");
-                        Products();
-                    }
+                else {
+                    let quantityMessage = document.querySelector(
+                        `.bag-item[data-product-id="${productId}"] .bag-quantity-message`
+                    );
+                    quantityMessage.textContent = "Maximum quantity reached.";
                 }
             }
-            let bagItemQuantity = document.querySelectorAll(".bag-item-quantity");
-            bagItemQuantity.forEach(element => {
-
-                let productIdFromData = element.dataset.productId;
-
-                element.addEventListener("click", elem => {
-                    elem.stopPropagation();
-                    if (elem.target.classList == "inc-btn") {
-                        console.log(elem.target);
-                        // let productQCon = element.querySelector(".productQ");
-                        // productQCon.innerHTML = 3;
-                        quantityBehav(productIdFromData, "increment");
-                    }
-                    if (elem.target.classList == "dec-btn") {
-                        console.log(elem.target);
-                                                quantityBehav(productIdFromData, "decrement");
-
-                    }
+            if (incOrDec == "decrement") {
+                let minOrderQ = product.minimumOrderQuantity;
+                let targetedProduct = getBagItem.find((item) => {
+                    return item.productId == productId;
                 });
-            });
+                let index = bagProductsID.findIndex((elem, index) => {
+                    return elem.productId == productId;
+                });
+                if (targetedProduct.productQuantity <= minOrderQ && targetedProduct.productQuantity > 1) {
+                    let productQ = targetedProduct.productQuantity - 1;
+                    bagProductsID.splice(index, 1, {
+                        productId: productId,
+                        productQuantity: productQ,
+                    });
+                    localStorage.setItem("bagProducts", JSON.stringify(bagProductsID));
+                    Products();
 
-     
+                }
+                else {
+                    bagProductsID.splice(index, 1);
+                    localStorage.setItem("bagProducts", JSON.stringify(bagProductsID));
+                    console.log("reached max limit");
+                    Products();
+                }
+            }
+        }
+        let bagItems = document.querySelectorAll(".bag-item");
+        console.log(bagItems);
+        bagItems.forEach(elem => {
+            console.log("elem.dataset.productId");
+            elem.querySelector(".bag-item-image").addEventListener("click", (e) => {
+                e.stopPropagation();
+                window.location.href = `product-details.html?id=${elem.dataset.productId}`;
+            });
+        });
+        let bagItemQuantity = document.querySelectorAll(".bag-item-quantity");
+        bagItemQuantity.forEach(element => {
+
+            let productIdFromData = element.dataset.productId;
+
+            element.addEventListener("click", elem => {
+                elem.stopPropagation();
+                if (elem.target.classList == "inc-btn") {
+                    console.log(elem.target);
+                    // let productQCon = element.querySelector(".productQ");
+                    // productQCon.innerHTML = 3;
+                    quantityBehav(productIdFromData, "increment");
+                }
+                if (elem.target.classList == "dec-btn") {
+                    console.log(elem.target);
+                    quantityBehav(productIdFromData, "decrement");
+
+                }
+            });
+        });
+
+
     }
 
     bagItemCountLabel.textContent = `${getBagItem.length} ${getBagItem.length === 1 ? "item" : "items"}`;
